@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- En-tête principale -->
+<header>
+    <h1>Plateforme de Gestion du Personnel</h1>
+</header>
+
+<div class="container">
+
+    <!-- SECTION GAUCHE : Employés non assignés -->
+    <section class="panel">
+        <h2>Employés non assignés</h2>
+
+        <!-- Liste des employés -->
+        <ul id="unassignedList"></ul>
+
+        <!-- Bouton pour ouvrir la modal -->
+        <button id="addBtn" class="btnajout">+ Ajouter un employé</button>
+    </section>
+
+    <!-- SECTION DROITE : Plan et zones -->
+    <main class="plan">
+        <h2>Plan du bâtiment</h2>
+
+        <!-- les zones -->
+        <div class="zones">
+
+            <!--  Réception -->
+            <div class="zone" data-zone="reception">
+                <h3>Réception</h3>
+                <div class="zoneStaff"></div>
+            </div>
+
+            <!--   Salle de conférence -->
+            <div class="zone" data-zone="conference">
+                <h3>Salle de conférence</h3>
+                <div class="zoneStaff"></div>
+
+            <!--   Salle de serveurs -->
+
+            </div>
+             <div class="zone" data-zone="conference">
+                <h3>Salle des serveurs</h3>
+                <div class="zoneStaff"></div>
+            </div>
+            <!--   Salle de sécurité -->
+
+             <div class="zone" data-zone="conference">
+                <h3>Salle de sécurité</h3>
+                <div class="zoneStaff"></div>
+            </div>
+            <!--   Salle du personnel -->
+
+             <div class="zone" data-zone="conference">
+                <h3>Salle du personnel</h3>
+                <div class="zoneStaff"></div>
+            </div>
+            <!--  Salle  d'archives -->
+
+             <div class="zone" data-zone="conference">
+                <h3>Salle d'archives</h3>
+                <div class="zoneStaff"></div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<!-- MODAL pour ajouter un employé -->
+<div id="modal" class="hidden">
+    <div class="modal-box">
+
+        <h3>Ajouter un employé</h3>
+       
+      <form >
+        <input id="nameInput" placeholder="Nom de l'employé">
+        <input type="text" id="image" placeholder="entrer url de img">
+         <select class="select"  id="roleselect">
+            <option selected>conférence</option>
+            <option>sécurité</option>
+            <option>personnel</option>
+            <option>archives</option>
+            <option>serveurs</option>
+         </select>
+      </form>
+        <button id="saveBtn" class="btnenrg">Enregistrer</button>
+        <button id="close" class="btnclose">close</button>
+
+    </div>
+</div>
+</body>
+</html>
