@@ -15,62 +15,69 @@
 <div class="container">
 
     <!-- SECTION GAUCHE : Employés non assignés -->
-    <section class="panel">
+    <aside class="panel">
         <h2>Employés non assignés</h2>
 
         <!-- Liste des employés -->
-        <ul id="unassignedList"></ul>
+        <ul id="nListemp">
+
+        </ul>
 
         <!-- Bouton pour ouvrir la modal -->
         <button id="addBtn" class="btnajout">+ Ajouter un employé</button>
-    </section>
+    </aside>
 
     <!-- SECTION DROITE : Plan et zones -->
-    <main class="plan">
+    <section class="plan">
         <h2>Plan du bâtiment</h2>
-
         <!-- les zones -->
         <div class="zones">
 
             <!--  Réception -->
-            <div class="zone" data-zone="reception">
-                <h3>Réception</h3>
+            <div class="zone" data-zone="conference">
+                <h3>Conference Room</h3>
                 <div class="zoneStaff"></div>
+            <button id="btn-confernce" class="add-btn">+</button>
             </div>
 
             <!--   Salle de conférence -->
-            <div class="zone" data-zone="conference">
-                <h3>Salle de conférence</h3>
+            <div class="zone" data-zone="reception">
+                <h3>Reception</h3>
                 <div class="zoneStaff"></div>
+               <button id="btn-reception" class="add-btn">+</button>
 
             <!--   Salle de serveurs -->
 
             </div>
-             <div class="zone" data-zone="conference">
-                <h3>Salle des serveurs</h3>
+             <div class="zone" data-zone="server">
+                <h3>Server Room</h3>
                 <div class="zoneStaff"></div>
+                <button id="btn-server" class="add-btn">+</button>
             </div>
             <!--   Salle de sécurité -->
 
-             <div class="zone" data-zone="conference">
-                <h3>Salle de sécurité</h3>
+             <div class="zone" data-zone="Security">
+                <h3>Security Room</h3>
                 <div class="zoneStaff"></div>
+                <button id="btn-security" class="add-btn">+</button>
             </div>
             <!--   Salle du personnel -->
 
-             <div class="zone" data-zone="conference">
-                <h3>Salle du personnel</h3>
+             <div class="zone" data-zone="Staff">
+                <h3>Staff Room</h3>
                 <div class="zoneStaff"></div>
+                <button id="btn-staf" class="add-btn">+</button>
             </div>
             <!--  Salle  d'archives -->
 
-             <div class="zone" data-zone="conference">
-                <h3>Salle d'archives</h3>
+             <div class="zone" data-zone="archive">
+                <h3>Archives</h3>
                 <div class="zoneStaff"></div>
+                <button id="btn-archive" class="add-btn">+</button>
             </div>
 
         </div>
-    </main>
+    </section>
 
 </div>
 
@@ -81,20 +88,31 @@
         <h3>Ajouter un employé</h3>
        
       <form >
-        <input id="nameInput" placeholder="Nom de l'employé">
-        <input type="text" id="image" placeholder="entrer url de img">
+
+        <input id="nameInput" placeholder="Nom de l'employé" required>
+        <label for="roleselect">Role</label>
          <select class="select"  id="roleselect">
-            <option selected>conférence</option>
+            <option selected>Manager </option>
             <option>sécurité</option>
-            <option>personnel</option>
-            <option>archives</option>
-            <option>serveurs</option>
+            <option>Techniciens</option>
+            <option>Nettoyage</option>
+            <option>Réceptionniste</option>
          </select>
-      </form>
+        <input type="text" id="image" placeholder="entrer url de img" required>
+        <input type="email" id="email" placeholder="entrer Email">
+        <input type="number" id="number" placeholder="number phone">
+        <input type="text" id="Experiences" placeholder="entrer Experiences" required>
+        <button type="button" id="addExpBtn" class="small-btn" required>Add Experience</button>
+      
+    </form>
         <button id="saveBtn" class="btnenrg">Enregistrer</button>
         <button id="close" class="btnclose">close</button>
 
     </div>
 </div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
