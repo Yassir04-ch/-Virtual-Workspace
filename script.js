@@ -11,7 +11,6 @@ const phoneInput = document.getElementById("number");
 const expInput = document.getElementById("Experiences");
 
 
-
 addBtn.onclick =function affmodal(){
   modal.style.display = "inline-block"
 
@@ -29,6 +28,7 @@ let server =JSON.parse(localStorage.getItem("server")) || [];
 let security =JSON.parse(localStorage.getItem("security")) || [];
 let staff = JSON.parse(localStorage.getItem("staff")) ||[];
 let archives =JSON.parse(localStorage.getItem("archives")) || [];
+
 
 function ajuteremployé(){
     let employee = {
@@ -88,22 +88,15 @@ function afficheremployé(){
     nListemp.innerHTML = "";
 
     employees.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = p.name + " ";
-
-        const btn = document.createElement("button");
-        btn.textContent = "Profile";
-        btn.onclick = function() {
-            alert(
-                `Nom: ${p.name}\nRole: ${p.role}\nEmail: ${p.email}\nTéléphone: ${p.phone}\nExperience: ${p.experience}`
-            );
-        };
-        li.appendChild(btn);
-        nListemp.appendChild(li);
-    });
+      nListemp.innerHTML += `
+        <div class="card" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button>edit</button>
+        </div>`;
+        });
 }
 afficheremployé();
-
 const btnconf = document.getElementById("btn-confernce")
 const btnser = document.getElementById("btn-server")
 const btnsecur = document.getElementById("btn-security")
@@ -114,66 +107,98 @@ const btnrecep = document.getElementById("btn-reception")
 
 // afficher les emploi en zones
 
-btnconf.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='conference'] .zoneStaff");
+function affichzone1(){
+  const zoneStaff = document.querySelector(".zone1 .equipe");
   zoneStaff.innerHTML = "";
 
   conference.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
+       zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
   });
-});
-btnrecep.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='reception'] .zoneStaff");
-  zoneStaff.innerHTML = "";
+};
 
-  reception.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
-  });
-});
-btnser.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='server'] .zoneStaff");
+function affichzone2(){
+  const zoneStaff = document.querySelector(".zone2 .equipe");
   zoneStaff.innerHTML = "";
 
   server.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
+      zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
   });
-});
-btnsecur.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='Security'] .zoneStaff");
+}
+
+function affichzone3(){
+  const zoneStaff = document.querySelector(".zone3 .equipe");
   zoneStaff.innerHTML = "";
 
   security.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
+     
+      zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
   });
-});
-btnstaf.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='Staff'] .zoneStaff");
+}
+
+function affichzone4(){
+  const zoneStaff = document.querySelector(".zone4 .equipe");
+  zoneStaff.innerHTML = "";
+
+  reception.forEach(p => {
+     
+      zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
+  });
+}
+
+function affichzone5(){
+  const zoneStaff = document.querySelector(".zone5 .equipe");
   zoneStaff.innerHTML = "";
 
   staff.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
+     
+      zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
   });
-});
- btnarchiv.addEventListener("click", function(){
-  const zoneStaff = document.querySelector(".zone[data-zone='archive'] .zoneStaff");
+}
+
+function affichzone6(){
+  const zoneStaff = document.querySelector(".zone6 .equipe");
   zoneStaff.innerHTML = "";
 
   archives.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = p.name;
-      zoneStaff.appendChild(li);
+      
+      zoneStaff.innerHTML +=`
+        <div class="emple" >
+        <img class="imgcard" src="${p.img}">
+        <p>${p.name}</p>
+        <button class="btn-rem">X</button>
+        </div>`;
   });
-});
+}
 
-
- 
+btnconf.addEventListener("click",affichzone1);
+btnser.addEventListener("click",affichzone2);
+btnsecur.addEventListener("click",affichzone3)
+btnrecep.addEventListener("click",affichzone4)
+btnstaf.addEventListener("click",affichzone5)
+btnsecur.addEventListener("click",affichzone3)
+btnarchiv.addEventListener("click",affichzone6)

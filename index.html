@@ -7,72 +7,57 @@
 </head>
 <body>
 
-<!-- En-tête principale -->
 <header>
-    <h1>Plateforme de Gestion du Personnel</h1>
+     
 </header>
 
 <div class="container">
 
-    <!-- SECTION GAUCHE : Employés non assignés -->
-    <aside class="panel">
-        <h2>Employés non assignés</h2>
+     <aside class="content">
+        <h3>Employés</h3>
 
-        <!-- Liste des employés -->
-        <ul id="nListemp">
+        <div id="nListemp">
 
-        </ul>
+        </div>
 
-        <!-- Bouton pour ouvrir la modal -->
-        <button id="addBtn" class="btnajout">+ Ajouter un employé</button>
+        <button id="addBtn" class="btnajout">Ajouter un employé</button>
     </aside>
 
-    <!-- SECTION DROITE : Plan et zones -->
     <section class="plan">
-        <h2>Plan du bâtiment</h2>
-        <!-- les zones -->
+        <h2>Plan</h2>
         <div class="zones">
-
-            <!--  Réception -->
-            <div class="zone" data-zone="conference">
+            <div class="zone1">
                 <h3>Conference Room</h3>
-                <div class="zoneStaff"></div>
+                <div class="equipe"></div>
             <button id="btn-confernce" class="add-btn">+</button>
             </div>
-
-            <!--   Salle de conférence -->
-            <div class="zone" data-zone="reception">
-                <h3>Reception</h3>
-                <div class="zoneStaff"></div>
-               <button id="btn-reception" class="add-btn">+</button>
-
-            <!--   Salle de serveurs -->
-
-            </div>
-             <div class="zone" data-zone="server">
+             <div class="zone2">
                 <h3>Server Room</h3>
-                <div class="zoneStaff"></div>
+                <div class="equipe"></div>
                 <button id="btn-server" class="add-btn">+</button>
             </div>
-            <!--   Salle de sécurité -->
 
-             <div class="zone" data-zone="Security">
+             <div class="zone3">
                 <h3>Security Room</h3>
-                <div class="zoneStaff"></div>
+                <div class="equipe"></div>
                 <button id="btn-security" class="add-btn">+</button>
             </div>
-            <!--   Salle du personnel -->
+            
+            <div class="zone4">
+                <h3>Reception</h3>
+                <div class="equipe"></div>
+               <button id="btn-reception" class="add-btn">+</button>
+            </div>
 
-             <div class="zone" data-zone="Staff">
+             <div class="zone5">
                 <h3>Staff Room</h3>
-                <div class="zoneStaff"></div>
+                <div class="equipe"></div>
                 <button id="btn-staf" class="add-btn">+</button>
             </div>
-            <!--  Salle  d'archives -->
 
-             <div class="zone" data-zone="archive">
+             <div class="zone6" >
                 <h3>Archives</h3>
-                <div class="zoneStaff"></div>
+                <div class="equipe"></div>
                 <button id="btn-archive" class="add-btn">+</button>
             </div>
 
@@ -81,9 +66,8 @@
 
 </div>
 
-<!-- MODAL pour ajouter un employé -->
-<div id="modal" class="hidden">
-    <div class="modal-box">
+<div id="modal">
+    <div class="modalinfo">
 
         <h3>Ajouter un employé</h3>
        
@@ -103,16 +87,13 @@
         <input type="number" id="number" placeholder="number phone">
         <input type="text" id="Experiences" placeholder="entrer Experiences" required>
         <button type="button" id="addExpBtn" class="small-btn" required>Add Experience</button>
-      
+           <button id="saveBtn" class="btnenrg">Enregistrer</button>
+           <button id="close" class="btnclose">close</button>
     </form>
-        <button id="saveBtn" class="btnenrg">Enregistrer</button>
-        <button id="close" class="btnclose">close</button>
+      
 
     </div>
 </div>
-
-
 <script src="script.js"></script>
-
 </body>
 </html>
