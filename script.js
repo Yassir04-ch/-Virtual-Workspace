@@ -1,4 +1,3 @@
-
 const modal = document.getElementById("modal");
 const addBtn = document.getElementById("addBtn");
 const clos = document.getElementById("close");
@@ -10,93 +9,168 @@ const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("number");
 const expInput = document.getElementById("Experiences");
 
-
-addBtn.onclick =function affmodal(){
-  modal.style.display = "inline-block"
-
+addBtn.onclick = function affmodal() {
+  modal.style.display = "inline-block";
 };
-clos.onclick =function affmodal(){
-  modal.style.display = "none"
 
+clos.onclick = function closemodal() {
+  modal.style.display = "none";
 };
 
 let employees = JSON.parse(localStorage.getItem("employees")) || [];
-
 let conference = JSON.parse(localStorage.getItem("conference")) || [];
-let reception = JSON.parse(localStorage.getItem("reception")) ||[];
-let server =JSON.parse(localStorage.getItem("server")) || [];
-let security =JSON.parse(localStorage.getItem("security")) || [];
-let staff = JSON.parse(localStorage.getItem("staff")) ||[];
-let archives =JSON.parse(localStorage.getItem("archives")) || [];
+let reception = JSON.parse(localStorage.getItem("reception")) || [];
+let server = JSON.parse(localStorage.getItem("server")) || [];
+let security = JSON.parse(localStorage.getItem("security")) || [];
+let staff = JSON.parse(localStorage.getItem("staff")) || [];
+let archives = JSON.parse(localStorage.getItem("archives")) || [];
+
+function validateForm() {
+   
+  if (nameInput.value.trim() === "") {
+    alert("enter  employees nome.");
+    nameInput.style.border = "2px solid red"
+    return false;
+  }
 
 
-function ajuteremployé(){
-    let employee = {
-        name: nameInput.value,
-        role: roleInput.value,
-        img: imgInput.value,
-        email: emailInput.value,
-        phone: phoneInput.value,
-        experience: expInput.value
-    };
+  if (imgInput.value.trim() === "") {
+    alert(" enter image URL.");
+    imgInput.style.border = "2px solid red"
+    return false;
+  }
 
-     if(employee.role === "Manager"){
-          conference.push(employee) ;
-          reception.push(employee);
-          server.push(employee); 
-          security.push(employee);
-          staff.push(employee);
-          archives.push(employee);
-        } 
-        if(employee.role === "sécurité"){
-          security.push(employee)
-        }
-         if(employee.role === "Techniciens"){
-          server.push(employee)
-        } 
-        if(employee.role === "Nettoyage"){
-          reception.push(employee);
-          conference.push(employee);
-          server.push(employee);
-          security.push(employee);
-          staff.push(employee);
-        }
-         if(employee.role === "Réceptionniste"){
-          reception.push(employee)
-        } 
+  
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (emailInput.value && !emailRegex.test(emailInput.value)) {
+    alert("enter valid email address.");
+    emailInput.style.border = "2px solid red"
+     return false;
+  }
 
-    employees.push(employee);
-    document.querySelector("form").reset();
 
-    localStorage.setItem("employees",JSON.stringify(employees));
+  if (phoneInput.value.trim()==="" && !/^\d{10}$/.test(phoneInput.value)) {
+    alert("enter a valid 10 phone number.");
+    phoneInput.style.border = "2px solid red"
+    return false;
+  }
 
-    localStorage.setItem("conference",JSON.stringify(conference));
-    localStorage.setItem("reception",JSON.stringify(reception));
-    localStorage.setItem("server",JSON.stringify(server));
-    localStorage.setItem("staff",JSON.stringify(staff));
-    localStorage.setItem("archives",JSON.stringify(archives));
-    localStorage.setItem("security",JSON.stringify(security));
 
-    afficheremployé(); 
+  if (expInput.value.trim() === "") {
+    alert("Please enter the employee's experiences.");
+    expInput.style.border = "2px solid red"
+
+    return false;
+  }
+
+  return true;
 }
-saveBtn.addEventListener("click",ajuteremployé)
 
-const nListemp = document.getElementById("nListemp")
+function ajuteremployé() {
+  if (!validateForm()) {
+    return;
+  }
 
+  let employee = {
+    name: nameInput.value,
+    role: roleInput.value,
+    img: imgInput.value,
+    email: emailInput.value,
+    phone: phoneInput.value,
+    experience: expInput.value
+  };
 
-function afficheremployé(){
-    nListemp.innerHTML = "";
+   
+  if (employee.role === "Manager") {
+    conference.push(employee);
+    reception.push(employee);
+    server.push(employee);
+    security.push(employee);
+    staff.push(employee);
+    archives.push(employee);
+  }
+  if (employee.role === "sécurité") {
+    security.push(employee);
+  }
+  if (employee.role === "Techniciens") {
+    server.push(employee);
+  }
+  if (employee.role === "Nettoyage") {
+    reception.push(employee);
+    conference.push(employee);
+    server.push(employee);
+    security.push(employee);
+    staff.push(employee);
+  }
+  if (employee.role === "Réceptionniste") {
+    reception.push(employee);
+  }
 
-    employees.forEach(p => {
-      nListemp.innerHTML += `
-        <div class="card" >
-        <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button>edit</button>
-        </div>`;
+  employees.push(employee);
+  document.querySelector("form").reset();  
+
+  localStorage.setItem("employees", JSON.stringify(employees));
+  localStorage.setItem("conference", JSON.stringify(conference));
+  localStorage.setItem("reception", JSON.stringify(reception));
+  localStorage.setItem("server", JSON.stringify(server));
+  localStorage.setItem("staff", JSON.stringify(staff));
+  localStorage.setItem("archives", JSON.stringify(archives));
+  localStorage.setItem("security", JSON.stringify(security));
+
+  afficheremployé();
+}
+
+saveBtn.addEventListener("click", ajuteremployé);
+
+const nListemp = document.getElementById("nListemp");
+
+function afficheremployé() {
+  nListemp.innerHTML = "";
+
+  employees.forEach((p, index) => {
+    nListemp.innerHTML += `
+      <div class="card">
+        <img data-index="${index}" class="imgcard imgpro" src="${p.img}" />
+        <div>
+          <p>${p.name}</p>
+          <p>Role: ${p.role}</p>
+        </div>
+        <button class="edit">edit</button>
+      </div>`;
+      
+
+    const imgb = document.querySelectorAll(".imgpro");
+
+    imgb.forEach(img => {
+      img.addEventListener("click", function () {
+        const idx = this.dataset.index;
+        const profile = document.getElementById("profile");
+        profile.style.display = "block";
+        profile.innerHTML = `
+          <div class="card-profil">
+            <h3>Profile</h3>
+            <img class="imgprofil" src="${employees[idx].img}" />
+            <p>Nome: ${employees[idx].name}</p>
+            <p>Role: ${employees[idx].role}</p>
+            <p>Email: ${employees[idx].email}</p>
+            <p>Phone: ${employees[idx].phone}</p>
+            <p>Experience: ${employees[idx].experience}</p>
+            <button class="btnclose">close</button>
+          </div>`;
+
+        const btncls = document.querySelectorAll(".btnclose");
+        btncls.forEach((button) => {
+          button.addEventListener("click", function () {
+            profile.style.display = "none";
+          });
         });
+      });
+    });
+  });
 }
+
 afficheremployé();
+
 const btnconf = document.getElementById("btn-confernce")
 const btnser = document.getElementById("btn-server")
 const btnsecur = document.getElementById("btn-security")
@@ -105,100 +179,140 @@ const btnarchiv = document.getElementById("btn-archive")
 const btnrecep = document.getElementById("btn-reception")
 
 
+
 // afficher les emploi en zones
 
-function affichzone1(){
-  const zoneStaff = document.querySelector(".zone1 .equipe");
-  zoneStaff.innerHTML = "";
+const employézone = document.getElementById("employézone");
 
-  conference.forEach(p => {
-       zoneStaff.innerHTML +=`
-        <div class="emple" >
+
+function affichzone1(){
+  employézone.style.display = "block";
+
+  employézone.innerHTML = "";
+
+  conference.forEach((p,index) => {
+       employézone.innerHTML +=`
+        <div class="card-employézone" >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+         <div>
+            <p>${p.name}</p>
+            <p>Role: ${p.role}</p>
+         </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
   });
 };
 
 function affichzone2(){
-  const zoneStaff = document.querySelector(".zone2 .equipe");
-  zoneStaff.innerHTML = "";
+  employézone.innerHTML = "";
 
-  server.forEach(p => {
-      zoneStaff.innerHTML +=`
-        <div class="emple" >
+  server.forEach((p,index) => {
+  employézone.style.display = "block"
+
+      employézone.innerHTML +=`
+        <div class="card-employézone" >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+         <div>
+            <p>${p.name}</p>
+            <p>Role: ${p.role}</p>
+         </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
+        
+      console.log(index);
   });
 }
 
 function affichzone3(){
-  const zoneStaff = document.querySelector(".zone3 .equipe");
-  zoneStaff.innerHTML = "";
+  employézone.style.display = "block"
 
-  security.forEach(p => {
+   employézone.innerHTML = "";
+
+  security.forEach((p,index) => {
      
-      zoneStaff.innerHTML +=`
-        <div class="emple" >
+    employézone.innerHTML +=`
+        <div class="card-employézone" >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+         <div>
+            <p>${p.name}</p>
+            <p>Role: ${p.role}</p>
+         </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
+        
+      console.log(index);
   });
 }
 
 function affichzone4(){
-  const zoneStaff = document.querySelector(".zone4 .equipe");
-  zoneStaff.innerHTML = "";
+  employézone.style.display = "block"
 
-  reception.forEach(p => {
+   employézone.innerHTML = "";
+
+  reception.forEach((p,index) => {
      
-      zoneStaff.innerHTML +=`
-        <div class="emple" >
+     employézone.innerHTML +=`
+        <div class="card-employézone" >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+         <div>
+            <p>${p.name}</p>
+            <p>Role: ${p.role}</p>
+         </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
+        
+      console.log(index);
   });
 }
 
 function affichzone5(){
-  const zoneStaff = document.querySelector(".zone5 .equipe");
-  zoneStaff.innerHTML = "";
+  employézone.style.display = "block"
 
-  staff.forEach(p => {
+   employézone.innerHTML = "";
+
+  staff.forEach((p,index) => {
      
-      zoneStaff.innerHTML +=`
-        <div class="emple" >
+      employézone.innerHTML +=`
+        <div class="card-employézone"  >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+        <div>
+         <p>${p.name}</p>
+         <p>Role: ${p.role}</p>
+        </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
   });
 }
 
 function affichzone6(){
-  const zoneStaff = document.querySelector(".zone6 .equipe");
-  zoneStaff.innerHTML = "";
+  employézone.style.display = "block"
+   employézone.innerHTML = "";
 
-  archives.forEach(p => {
+  archives.forEach((p,index) => {
       
-      zoneStaff.innerHTML +=`
-        <div class="emple" >
+      employézone.innerHTML +=`
+        <div class="card-employézone"  >
         <img class="imgcard" src="${p.img}">
-        <p>${p.name}</p>
-        <button class="btn-rem">X</button>
+        <div>
+         <p>${p.name}</p>
+         <p>Role: ${p.role}</p>
+        </div>
+        <button data-index="${index}" class="btn-addzone">add</button>
         </div>`;
   });
 }
 
+
+function removelist(){
+  
+}
+
 btnconf.addEventListener("click",affichzone1);
 btnser.addEventListener("click",affichzone2);
-btnsecur.addEventListener("click",affichzone3)
-btnrecep.addEventListener("click",affichzone4)
-btnstaf.addEventListener("click",affichzone5)
-btnsecur.addEventListener("click",affichzone3)
-btnarchiv.addEventListener("click",affichzone6)
+btnsecur.addEventListener("click",affichzone3);
+btnrecep.addEventListener("click",affichzone4);
+btnstaf.addEventListener("click",affichzone5);
+btnarchiv.addEventListener("click",affichzone6);
+
+
+

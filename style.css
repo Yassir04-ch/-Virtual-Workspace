@@ -1,188 +1,339 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 body {
-    font-family: "Cairo", sans-serif;
-    background:linear-gradient(to right , black , #4c84ff);
+  font-family: "Cairo", sans-serif;
+  background: linear-gradient(to right, black, #4c84ff);
 }
 
- 
 .container {
-    display: flex;
-} 
+  display: flex;
+}
 .content {
-    width: 20%;
-    height: 100vh;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-size: 14px;
+  width: 20%;
+  height: 100vh;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
- 
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 .btnenrg {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    margin-top: 10px;
-    border-radius: 8px;
-    width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  width: 100%;
 }
 
-.btnajout{
-     background: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    margin-top: 10px;
-    border-radius: 8px;
-    width: 100%;
+.btnajout {
+  background: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  width: 100%;
 }
-
 
 .btnclose {
-    background: #ff4444;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    margin-top: 5px;
-    border-radius: 8px;
+  background: #ff4444;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  margin-top: 5px;
+  border-radius: 8px;
 }
 
-
 section.plan {
-    width: 80%;
-    height: 100vh;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    color: white;
+  width: 80%;
+  height: 100vh;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 div.zones {
-    height: 100vh;
-    padding: 10px;
-    background-image: url(plan-69159a65c5684763515973-6918972274aec233423111\ \(1\).jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+  height: 95vh;
+  padding: 10px;
+  background-image:url(plan-69159a65c5684763515973-6918972274aec233423111\ \(1\).jpg) ;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-div.zones{
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(3,auto);
-    grid-template-areas:
-    "zone1 zone1 . zone2 zone3" 
-    "zone4 zone4 . . ."          
-    "zone4 zone4 . zone5 zone6"          
-     ;
+div.zones {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    "zone1 zone1 . zone2 zone3"
+    "zone4 zone4 . . ."
+    "zone4 zone4 . zone5 zone6";
 }
 
-.zone1{
-    grid-area:zone1;
+.zone1 {
+  grid-area: zone1;
 }
-.zone2{
-    grid-area:zone2;
-
+.zone2 {
+  grid-area: zone2;
 }
-.zone3{
-    grid-area:zone3;
-
+.zone3 {
+  grid-area: zone3;
 }
-.zone4{
-    grid-area:zone4;
-
+.zone4 {
+  grid-area: zone4;
 }
-.zone5{
-    grid-area: zone5;
+.zone5 {
+  grid-area: zone5;
 }
-.zone6{
-    grid-area: zone6;
+.zone6 {
+  grid-area: zone6;
 }
-
-#modal { 
-    display: none; 
-}
-
 
 #modal {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.304);
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    place-content: center;
-    place-items: center;
+  display: none;
 }
 
+#modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.304);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+  place-items: center;
+}
 
 .modalinfo {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
 }
 
+.profile {
+  background-color: rgba(14, 13, 13, 0.386);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  left: 0;
+  place-content: center;
+  place-items: center;
+  display: none;
+}
+div.card-profil {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  place-items: center;
+  background-color: white;
+  width: 40%;
+  height: 70%;
+  border-radius: 10px;
+}
+
+.employézone{
+  background-color: rgba(14, 13, 13, 0.386);
+  color: white;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  left: 0;
+  place-content: center;
+  place-items: center;
+  display: none;
+}
+
+.card-employézone{
+  display: flex;
+  background-color: rgba(52, 50, 50, 0.473);
+  width: fit-content;
+  border-radius: 10px;
+}
+button.btn-addzone{
+  height: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(26, 216, 26);
+}
 
 .modalinfo input {
-    width: 95%;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #cccccc95;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
+  width: 95%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #cccccc95;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
-select.select{
-    background-color: #cccccc95;
-    border: 1px solid #ccc;
-    width: 100%;
-    padding: 5px;
+select.select {
+  background-color: #cccccc95;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
 }
 
-.add-btn{
-    background: rgb(24, 155, 68);
-    width: 25px;
-    color: white;
-    border: none;
-    border-radius: 8px;
+.add-btn {
+  background: rgb(24, 155, 68);
+  width: 25px;
+  color: white;
+  border: none;
+  border-radius: 8px;
 }
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 /* element js  */
-.card{
-    display: flex;
+.card {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+  justify-content: space-between;
+  background: rgba(128, 128, 128, 0.436);
+  border-radius: 10px;
+  margin: 8px 0px;
+}
+.imgcard {
+  width: 40px;
+  border-radius: 50%;
+  height: 40px;
+}
+.emple {
+  display: flex;
+  border-radius: 10px;
+  background: rgba(128, 128, 128, 0.703);
+  width: fit-content;
+}
+.btn-rem {
+  background-color: red;
+  border: 1px solid;
+  border-radius: 20px;
+}
+button.edit{
+  height:fit-content; 
+  background:orangered;
+  border-radius: 6px;
+  padding: 2px;
+  border: none;
+}
+img.imgprofil{
+  width: 25%;
+  
+}
+
+@media (min-width: 1280px) {
+  .container {
+    flex-direction: row;
+  }
+  .content {
+    width: 20%;
+  }
+  section.plan {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    flex-direction: row;
+  }
+  .content {
+    width: 20%;
+  }
+  section.plan {
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .content {
     width: 100%;
-    padding: 8px;
-    justify-content: space-between;
-    background:rgba(128, 128, 128, 0.436);
-    border-radius: 10px;
-    margin: 8px 0px;
+    height: fit-content;
+  }
+  section.plan {
+    width: 100%;
+  }
 }
-.imgcard{
-    width: 30px;
-     border-radius: 50%;   
-      height: 30px;
+
+@media (max-width: 769px) {
+  body {
+    font-size: 10px;
+  }
+  h3{
+    font-size: 11px;
+  }
+  .imgcard {
+    width: 25px;
+    border-radius: 50%;
+    height: 25px;
+  }
+ .add-btn {
+  background: rgb(24, 155, 68);
+  width: 15px;
+  color: white;
+  border: none;
+  border-radius: 8px; 
+ }
+  .container {
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+    height: fit-content;
+  }
+  .btn-rem {
+  background-color: rgba(255, 0, 0, 0.744);
+  border: 1px solid;
+  border-radius: 10px;
+  height: 15px;
+
+ }
+  section.plan {
+    width: 100%;
+  }
+  
+  #nListemp{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+  }
+  .card {
+  font-size: 12px;
+  display: flex;
+  width: 60%;
+  padding: 5px;
+  justify-content: space-between;
+  background: rgba(128, 128, 128, 0.436);
+  border-radius: 10px;
+  margin: 8px 0px;
 }
-.emple{
-    display: flex;
-    border-radius: 10px;
-    background:rgba(128, 128, 128, 0.703);
-    width: fit-content;
+.btnajout{
+  width: 45%;
 }
-.btn-rem{
-    background-color: red;
-    border: 1px solid;
-    border-radius: 20px;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  body {
+    font-size: 10px;
+  }
+
 }
