@@ -17,6 +17,7 @@ clos.onclick = function closemodal() {
   modal.style.display = "none";
 };
 
+
 let employees = JSON.parse(localStorage.getItem("employees")) || [];
 let conference = JSON.parse(localStorage.getItem("conference")) || [];
 let reception = JSON.parse(localStorage.getItem("reception")) || [];
@@ -66,6 +67,11 @@ function validateForm() {
   return true;
 }
 
+const exepriances = document.getElementById("exepriances");
+exepriances.addEventListener("click",function(e){
+  
+})
+
 function ajuteremployé() {
   if (!validateForm()) {
     return;
@@ -77,7 +83,7 @@ function ajuteremployé() {
     img: imgInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
-    experience: expInput.value
+    experience: []
   };
 
    
@@ -184,13 +190,12 @@ const btnrecep = document.getElementById("btn-reception")
 
 const employézone = document.getElementById("employézone");
 
-
-function affichzone1(){
+function affichzone(zon){
   employézone.style.display = "block";
 
   employézone.innerHTML = "";
 
-  conference.forEach((p,index) => {
+  zon.forEach((p,index) => {
        employézone.innerHTML +=`
         <div class="card-employézone" >
         <img class="imgcard" src="${p.img}">
@@ -199,120 +204,17 @@ function affichzone1(){
             <p>Role: ${p.role}</p>
          </div>
         <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
+        <div>`;
   });
+  
+  employézone.querySelector("button").onclick = () => employézone.style.display = "none";
+
 };
 
-function affichzone2(){
-  employézone.innerHTML = "";
-
-  server.forEach((p,index) => {
-  employézone.style.display = "block"
-
-      employézone.innerHTML +=`
-        <div class="card-employézone" >
-        <img class="imgcard" src="${p.img}">
-         <div>
-            <p>${p.name}</p>
-            <p>Role: ${p.role}</p>
-         </div>
-        <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
-        
-      console.log(index);
-  });
-}
-
-function affichzone3(){
-  employézone.style.display = "block"
-
-   employézone.innerHTML = "";
-
-  security.forEach((p,index) => {
-     
-    employézone.innerHTML +=`
-        <div class="card-employézone" >
-        <img class="imgcard" src="${p.img}">
-         <div>
-            <p>${p.name}</p>
-            <p>Role: ${p.role}</p>
-         </div>
-        <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
-        
-      console.log(index);
-  });
-}
-
-function affichzone4(){
-  employézone.style.display = "block"
-
-   employézone.innerHTML = "";
-
-  reception.forEach((p,index) => {
-     
-     employézone.innerHTML +=`
-        <div class="card-employézone" >
-        <img class="imgcard" src="${p.img}">
-         <div>
-            <p>${p.name}</p>
-            <p>Role: ${p.role}</p>
-         </div>
-        <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
-        
-      console.log(index);
-  });
-}
-
-function affichzone5(){
-  employézone.style.display = "block"
-
-   employézone.innerHTML = "";
-
-  staff.forEach((p,index) => {
-     
-      employézone.innerHTML +=`
-        <div class="card-employézone"  >
-        <img class="imgcard" src="${p.img}">
-        <div>
-         <p>${p.name}</p>
-         <p>Role: ${p.role}</p>
-        </div>
-        <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
-  });
-}
-
-function affichzone6(){
-  employézone.style.display = "block"
-   employézone.innerHTML = "";
-
-  archives.forEach((p,index) => {
-      
-      employézone.innerHTML +=`
-        <div class="card-employézone"  >
-        <img class="imgcard" src="${p.img}">
-        <div>
-         <p>${p.name}</p>
-         <p>Role: ${p.role}</p>
-        </div>
-        <button data-index="${index}" class="btn-addzone">add</button>
-        </div>`;
-  });
-}
-
-
-function removelist(){
-  
-}
-
-btnconf.addEventListener("click",affichzone1);
-btnser.addEventListener("click",affichzone2);
-btnsecur.addEventListener("click",affichzone3);
-btnrecep.addEventListener("click",affichzone4);
-btnstaf.addEventListener("click",affichzone5);
-btnarchiv.addEventListener("click",affichzone6);
-
-
+btnconf.onclick = () => affichzone(conference);
+btnser.onclick = () => affichzone(server);
+btnsecur.onclick = () => affichzone(security);
+btnrecep.onclick = () => affichzone(reception);
+btnstaf.onclick = () => affichzone(staff);
+btnarchiv.onclick = () => affichzone(archives);
 

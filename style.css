@@ -139,7 +139,7 @@ div.card-profil {
   flex-direction: column;
   justify-content: space-between;
   place-items: center;
-  background-color: white;
+  background-color: rgba(134, 129, 129, 0.763);
   width: 40%;
   height: 70%;
   border-radius: 10px;
@@ -160,10 +160,11 @@ div.card-profil {
 
 .card-employézone{
   display: flex;
-  background-color: rgba(52, 50, 50, 0.473);
-  width: fit-content;
+  background-color: rgba(52, 50, 50, 0.598);
+  width: 20%;
   border-radius: 10px;
 }
+
 button.btn-addzone{
   height: 20px;
   border: none;
@@ -234,7 +235,10 @@ img.imgprofil{
   width: 25%;
   
 }
-
+img{
+  width: 30px;
+  border-radius: 7px;
+}
 @media (min-width: 1280px) {
   .container {
     flex-direction: row;
