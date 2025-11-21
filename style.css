@@ -33,6 +33,7 @@ ul li {
   border: none;
   margin-top: 10px;
   border-radius: 8px;
+  height: 30px;
   width: 100%;
 }
 .btnenrg:hover{
@@ -58,6 +59,7 @@ ul li {
   color: white;
   padding: 10px;
   width: 100%;
+  height: 30px;
   border: none;
   margin-top: 5px;
   border-radius: 8px;
@@ -96,19 +98,28 @@ div.zones {
   grid-area: zone1;
 }
 .zone2 {
+  position: relative;
+  left: -50px;
+  width: 110%;
+  background: rgba(255, 0, 0, 0.436);
   grid-area: zone2;
-}
+ }
 .zone3 {
+  background: rgba(255, 0, 0, 0.436);
   grid-area: zone3;
 }
 .zone4 {
   grid-area: zone4;
+  background: rgba(255, 0, 0, 0.37);
+
 }
 .zone5 {
   grid-area: zone5;
 }
 .zone6 {
   grid-area: zone6;
+  background: rgba(255, 0, 0, 0.443);
+
 }
 
 #modal {
@@ -126,16 +137,23 @@ div.zones {
   place-items: center;
 }
 
+#imgemploiyee{
+  border-radius:45%;
+  position: relative;
+  left:34%;
+  width: 30%;
+  height: 120px;
+}
 .modalinfo {
   background: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 12px;
-  width: 300px;
+  width: 500px;
   height: 90%;
   overflow: scroll;
 }
 .modalinfo input , .modalinfo select {
-  height: 25px;
+  height: 30px;
 }
 .modalinfo select{
   border-radius: 8px;
@@ -182,7 +200,9 @@ div.card-profil {
 
 div.card-profil:hover{
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px black;
+  box-shadow: 0 10px 30px rgb(183, 181, 181);
+  background-color: rgb(101, 100, 100);
+
 
 }
 
@@ -202,7 +222,7 @@ div.card-profil:hover{
 .card-employézone{
   display: flex;
   background-color: rgba(52, 50, 50, 0.598);
-  width: 20%;
+  width:fit-content;
   border-radius: 10px;
 }
 
@@ -284,6 +304,20 @@ img.imgprofil{
 img{
   width: 30px;
   border-radius: 7px;
+}
+.btn-remzone{
+  background-color: red;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  height: 70%;
+  width: 20px;
+}
+button:hover{
+  transform: translateY(-5px);
+}
+.btn-remzone:hover{
+  background-color: rgb(164, 13, 13);
 }
 @media (min-width: 1280px) {
   .container {

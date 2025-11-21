@@ -11,6 +11,14 @@ const expInput = document.getElementById("Experiences");
 const addExpBtn = document.getElementById("addExpBtn");
 const formex = document.getElementById("formex")
 
+// imagr de form ajoute 
+const imgemploiyee = document.getElementById("imgemploiyee")
+
+imgInput.addEventListener("input",function(){
+  imgemploiyee.src = `${imgInput.value}`
+  
+})
+
 addBtn.onclick = function affmodal() {
   modal.style.display = "inline-block";
 };
@@ -18,6 +26,10 @@ addBtn.onclick = function affmodal() {
 clos.onclick = function closemodal() {
   modal.style.display = "none";
   formex.style.display = "none"
+  document.querySelector("form").reset();
+  imgemploiyee.src = " "
+
+
 
 };
 
@@ -59,7 +71,7 @@ function validateForm() {
   }
 
 
-  if (phoneInput.value.trim()==="" && !/^\d{10}$/.test(phoneInput.value)) {
+if (phoneInput.value.trim() === "" || !/^\d{10}$/.test(phoneInput.value)) {
     alert("enter a valid 10 phone number.");
     phoneInput.style.border = "2px solid red"
     return false;
@@ -124,6 +136,9 @@ function ajuteremployé() {
   employees.push(employee);
   document.querySelector("form").reset();  
 
+  imgemploiyee.src = " "
+
+
   localStorage.setItem("employees", JSON.stringify(employees));
   localStorage.setItem("conference", JSON.stringify(conference));
   localStorage.setItem("reception", JSON.stringify(reception));
@@ -184,6 +199,7 @@ function afficheremployé() {
   });
 }
 
+
 afficheremployé();
 
 const btnconf = document.getElementById("btn-confernce")
@@ -196,35 +212,103 @@ const btnrecep = document.getElementById("btn-reception")
 
 
 // afficher les emploi en zones
+const employezone = document.getElementById("employézone");
 
-const employézone = document.getElementById("employézone");
+function affichzone(ctx, zon) {
+  if (zon.length <= 0) {
+    alert("aucune emploiyee");
+    return;
+  } else if (zon.length >= 3) {
+    alert("maximum emploiyee");
+    return;
+  } 
 
-function affichzone(zon){
-  employézone.style.display = "block";
+  employezone.style.display = "block";
+  employezone.innerHTML = "";
 
-  employézone.innerHTML = "";
-
-  zon.forEach((p,index) => {
-       employézone.innerHTML +=`
-        <div class="card-employézone" >
+  zon.forEach((p, index) => {
+    employezone.innerHTML += `
+      <div class="card-employézone">
         <img class="imgcard" src="${p.img}">
-         <div>
-            <p>${p.name}</p>
-            <p>Role: ${p.role}</p>
-         </div>
+        <div>
+          <p>${p.name}</p>
+          <p>Role: ${p.role}</p>
+        </div>
         <button data-index="${index}" class="btn-addzone">add</button>
-        <div>`;
+      </div>`;
   });
+//  remove on zone
+  const removeFromArray = (arr, employee) => {
+    const i = arr.findIndex(e => e.name === employee.name && e.img === employee.img);
+    if (i > -1) arr.splice(i, 1);
+  };
+
+//  add to zone 
+  document.querySelectorAll(".btn-addzone").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const idx = this.dataset.index;
+      const employee = zon[idx];
+      const equipeContainer = ctx.closest(`[data-zone]`).querySelector(".equipe");
+      equipeContainer.innerHTML += `
+        <div class="card-employézone" style="width:fit-content;">
+          <img class="imgcard" src="${employee.img}">
+          <div>
+            <p>${employee.name}</p>
+            <p>Role: ${employee.role}</p>
+          </div>
+          <button class="btn-remzone">X</button>
+        </div>`;
+
+      zon.splice(idx, 1);
+
+// remove emploiyee 
+      removeFromArray(conference, employee);
+      removeFromArray(reception, employee);
+      removeFromArray(server, employee);
+      removeFromArray(staff, employee);
+      removeFromArray(archives, employee);
+      removeFromArray(security, employee);
+
+      employezone.style.display = "none";
 
 
+      localStorage.setItem("employees", JSON.stringify(employees));
+      localStorage.setItem("conference", JSON.stringify(conference));
+      localStorage.setItem("reception", JSON.stringify(reception));
+      localStorage.setItem("server", JSON.stringify(server));
+      localStorage.setItem("staff", JSON.stringify(staff));
+      localStorage.setItem("archives", JSON.stringify(archives));
+      localStorage.setItem("security", JSON.stringify(security));
   
-  employézone.querySelector("button").onclick = () => employézone.style.display = "none";
+      const zondiv = ctx.closest(`[data-zone]`);
+      if(equipeContainer.children.length > 0){
+        zondiv.style.background = "rgba(13, 142, 13, 0)"
+      }
 
-};
 
-btnconf.onclick = () => affichzone(conference);
-btnser.onclick = () => affichzone(server);
-btnsecur.onclick = () => affichzone(security);
-btnrecep.onclick = () => affichzone(reception);
-btnstaf.onclick = () => affichzone(staff);
-btnarchiv.onclick = () => affichzone(archives);
+      equipeContainer.querySelectorAll(".btn-remzone").forEach((rmBtn) => {
+        rmBtn.addEventListener("click", function () {
+
+          zon.push(employee);
+          this.parentElement.remove();
+
+ 
+          localStorage.setItem("employees", JSON.stringify(employees));
+          localStorage.setItem("conference", JSON.stringify(conference));
+          localStorage.setItem("reception", JSON.stringify(reception));
+          localStorage.setItem("server", JSON.stringify(server));
+          localStorage.setItem("staff", JSON.stringify(staff));
+          localStorage.setItem("archives", JSON.stringify(archives));
+          localStorage.setItem("security", JSON.stringify(security));
+        });
+      });
+    });
+  });
+}
+
+btnconf.onclick = function(){ affichzone(this,conference);}
+btnser.onclick = function() {affichzone(this,server);}
+btnsecur.onclick = function(){affichzone(this,security);}
+btnrecep.onclick = function(){affichzone(this,reception);}
+btnstaf.onclick = function() {affichzone(this,staff);}
+btnarchiv.onclick = function(){affichzone(this,archives);}
