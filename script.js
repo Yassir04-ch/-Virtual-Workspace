@@ -47,6 +47,7 @@ let security = JSON.parse(localStorage.getItem("security")) || [];
 let staff = JSON.parse(localStorage.getItem("staff")) || [];
 let archives = JSON.parse(localStorage.getItem("archives")) || [];
 
+// rejex form validation 
 function validateForm() {
    
   if (nameInput.value.trim() === "") {
@@ -150,10 +151,12 @@ function ajuteremployé() {
   afficheremployé();
 }
 
+
 saveBtn.addEventListener("click", ajuteremployé);
 
 const nListemp = document.getElementById("nListemp");
 
+// afficher emploiyee dans aside 
 function afficheremployé() {
   nListemp.innerHTML = "";
 
@@ -168,9 +171,8 @@ function afficheremployé() {
         <button class="edit">edit</button>
       </div>`;
       
-
+ // afficher profile de emploiyee
     const imgb = document.querySelectorAll(".imgpro");
-
     imgb.forEach(img => {
       img.addEventListener("click", function () {
         const idx = this.dataset.index;
@@ -216,16 +218,17 @@ const employezone = document.getElementById("employézone");
 
 function affichzone(ctx, zon) {
   if (zon.length <= 0) {
-    alert("aucune emploiyee");
+    alert("aucune employée");
     return;
   } else if (zon.length >= 3) {
-    alert("maximum emploiyee");
+    alert("maximum employée");
     return;
   } 
 
   employezone.style.display = "block";
   employezone.innerHTML = "";
 
+ 
   zon.forEach((p, index) => {
     employezone.innerHTML += `
       <div class="card-employézone">
@@ -237,18 +240,22 @@ function affichzone(ctx, zon) {
         <button data-index="${index}" class="btn-addzone">add</button>
       </div>`;
   });
-//  remove on zone
+
+ 
   const removeFromArray = (arr, employee) => {
     const i = arr.findIndex(e => e.name === employee.name && e.img === employee.img);
     if (i > -1) arr.splice(i, 1);
   };
 
-//  add to zone 
+ 
   document.querySelectorAll(".btn-addzone").forEach((btn) => {
     btn.addEventListener("click", function () {
       const idx = this.dataset.index;
       const employee = zon[idx];
-      const equipeContainer = ctx.closest(`[data-zone]`).querySelector(".equipe");
+      const zondiv = ctx.closest(`[data-zone]`);
+      const equipeContainer = zondiv.querySelector(".equipe");
+
+      // إضافة البطاقة للzone
       equipeContainer.innerHTML += `
         <div class="card-employézone" style="width:fit-content;">
           <img class="imgcard" src="${employee.img}">
@@ -259,10 +266,14 @@ function affichzone(ctx, zon) {
           <button class="btn-remzone">X</button>
         </div>`;
 
-      zon.splice(idx, 1);
 
-// remove emploiyee 
-      removeFromArray(employees,employee)
+       zon.splice(idx, 1);
+       employees.splice(idx,1)
+    
+        afficheremployé(); 
+
+
+      removeFromArray(employees, employee);
       removeFromArray(conference, employee);
       removeFromArray(reception, employee);
       removeFromArray(server, employee);
@@ -280,23 +291,39 @@ function affichzone(ctx, zon) {
       localStorage.setItem("staff", JSON.stringify(staff));
       localStorage.setItem("archives", JSON.stringify(archives));
       localStorage.setItem("security", JSON.stringify(security));
-      afficheremployé();
-  
-      const zondiv = ctx.closest(`[data-zone]`);
-      if(equipeContainer.children.length > 0){
-        zondiv.style.background = "rgba(13, 142, 13, 0)"
+
+
+      if (equipeContainer.children.length > 0) {
+        zondiv.style.background = "rgba(13, 142, 13, 0)";
       }
-       
-     else{
-        zondiv.style.background = "rgba(13, 142, 13, 0)"
-    }
+
 
       equipeContainer.querySelectorAll(".btn-remzone").forEach((rmBtn) => {
         rmBtn.addEventListener("click", function () {
-   
-          zon.push(employee);
-          employees.push(employee)
           this.parentElement.remove();
+
+ 
+          if (!employees.some(e => e.name === employee.name)){ 
+             employees.push(employee);
+            }
+          if (!conference.some(e => e.name === employee.name)){
+             conference.push(employee);
+          }
+          if (!reception.some(e => e.name === employee.name)) {
+            reception.push(employee);
+          }
+          if (!server.some(e => e.name === employee.name)) {
+            server.push(employee);
+          }
+          if (!staff.some(e => e.name === employee.name)) {
+            staff.push(employee);
+          }
+          if (!archives.some(e => e.name === employee.name)){
+             archives.push(employee);
+          }
+          if (!security.some(e => e.name === employee.name)) {
+            security.push(employee);
+          }
 
  
           localStorage.setItem("employees", JSON.stringify(employees));
@@ -306,13 +333,21 @@ function affichzone(ctx, zon) {
           localStorage.setItem("staff", JSON.stringify(staff));
           localStorage.setItem("archives", JSON.stringify(archives));
           localStorage.setItem("security", JSON.stringify(security));
-         afficheremployé();
 
+ 
+          if (equipeContainer.children.length <= 0) {
+            zondiv.style.background = "rgba(255,0,0,0.3)";
+          }
+
+          afficheremployé(); 
         });
       });
     });
   });
 }
+
+afficheremployé(); 
+
 
 btnconf.onclick = function(){ affichzone(this,conference);}
 btnser.onclick = function() {affichzone(this,server);}

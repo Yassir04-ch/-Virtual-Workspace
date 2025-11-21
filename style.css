@@ -116,6 +116,9 @@ div.zones {
 }
 .zone5 {
   grid-area: zone5;
+  position: relative;
+  width: 110%;
+   left: -50px;
   background: rgba(255, 0, 0, 0.313);
 
 }
