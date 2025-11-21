@@ -96,29 +96,32 @@ div.zones {
 
 .zone1 {
   grid-area: zone1;
+  background: rgba(255, 0, 0, 0.313);
 }
 .zone2 {
   position: relative;
   left: -50px;
   width: 110%;
-  background: rgba(255, 0, 0, 0.436);
+  background: rgba(255, 0, 0, 0.313);
   grid-area: zone2;
  }
 .zone3 {
-  background: rgba(255, 0, 0, 0.436);
+  background: rgba(255, 0, 0, 0.313);
   grid-area: zone3;
 }
 .zone4 {
   grid-area: zone4;
-  background: rgba(255, 0, 0, 0.37);
+  background: rgba(255, 0, 0, 0.313);
 
 }
 .zone5 {
   grid-area: zone5;
+  background: rgba(255, 0, 0, 0.313);
+
 }
 .zone6 {
   grid-area: zone6;
-  background: rgba(255, 0, 0, 0.443);
+  background: rgba(255, 0, 0, 0.313);
 
 }
 

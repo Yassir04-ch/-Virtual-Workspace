@@ -262,6 +262,7 @@ function affichzone(ctx, zon) {
       zon.splice(idx, 1);
 
 // remove emploiyee 
+      removeFromArray(employees,employee)
       removeFromArray(conference, employee);
       removeFromArray(reception, employee);
       removeFromArray(server, employee);
@@ -279,17 +280,22 @@ function affichzone(ctx, zon) {
       localStorage.setItem("staff", JSON.stringify(staff));
       localStorage.setItem("archives", JSON.stringify(archives));
       localStorage.setItem("security", JSON.stringify(security));
+      afficheremployé();
   
       const zondiv = ctx.closest(`[data-zone]`);
       if(equipeContainer.children.length > 0){
         zondiv.style.background = "rgba(13, 142, 13, 0)"
       }
-
+       
+     else{
+        zondiv.style.background = "rgba(13, 142, 13, 0)"
+    }
 
       equipeContainer.querySelectorAll(".btn-remzone").forEach((rmBtn) => {
         rmBtn.addEventListener("click", function () {
-
+   
           zon.push(employee);
+          employees.push(employee)
           this.parentElement.remove();
 
  
@@ -300,6 +306,8 @@ function affichzone(ctx, zon) {
           localStorage.setItem("staff", JSON.stringify(staff));
           localStorage.setItem("archives", JSON.stringify(archives));
           localStorage.setItem("security", JSON.stringify(security));
+         afficheremployé();
+
         });
       });
     });
