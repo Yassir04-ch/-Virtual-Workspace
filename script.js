@@ -8,6 +8,8 @@ const imgInput = document.getElementById("image");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("number");
 const expInput = document.getElementById("Experiences");
+const addExpBtn = document.getElementById("addExpBtn");
+const formex = document.getElementById("formex")
 
 addBtn.onclick = function affmodal() {
   modal.style.display = "inline-block";
@@ -15,7 +17,14 @@ addBtn.onclick = function affmodal() {
 
 clos.onclick = function closemodal() {
   modal.style.display = "none";
+  formex.style.display = "none"
+
 };
+
+addExpBtn.addEventListener("click",function(){
+  formex.style.display = "block"
+
+})
 
 
 let employees = JSON.parse(localStorage.getItem("employees")) || [];
@@ -206,6 +215,8 @@ function affichzone(zon){
         <button data-index="${index}" class="btn-addzone">add</button>
         <div>`;
   });
+
+
   
   employézone.querySelector("button").onclick = () => employézone.style.display = "none";
 
@@ -217,4 +228,3 @@ btnsecur.onclick = () => affichzone(security);
 btnrecep.onclick = () => affichzone(reception);
 btnstaf.onclick = () => affichzone(staff);
 btnarchiv.onclick = () => affichzone(archives);
-
