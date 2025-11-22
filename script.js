@@ -251,9 +251,11 @@ function affichzone(ctx, zon) {
   });
 
  
-  const removeFromArray = (arr, employee) => {
-    const i = arr.findIndex(e => e.name === employee.name && e.img === employee.img);
-    if (i > -1) arr.splice(i, 1);
+  const removeinArray = (arr, empl) => {
+    const i = arr.findIndex(e => e.name === empl.name && e.img === empl.img);
+    if (i > -1){
+       arr.splice(i, 1);
+      }
   };
 
  
@@ -282,13 +284,13 @@ function affichzone(ctx, zon) {
         afficheremployé(); 
 
 
-      removeFromArray(employees, employee);
-      removeFromArray(conference, employee);
-      removeFromArray(reception, employee);
-      removeFromArray(server, employee);
-      removeFromArray(staff, employee);
-      removeFromArray(archives, employee);
-      removeFromArray(security, employee);
+      removeinArray(employees, employee);
+      removeinArray(conference, employee);
+      removeinArray(reception, employee);
+      removeinArray(server, employee);
+      removeinArray(staff, employee);
+      removeinArray(archives, employee);
+      removeinArray(security, employee);
 
       employezone.style.display = "none";
 
