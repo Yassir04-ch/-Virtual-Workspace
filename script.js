@@ -19,18 +19,15 @@ imgInput.addEventListener("input",function(){
   
 })
 
-addBtn.onclick = function affmodal() {
+addBtn.addEventListener("click",function affmodal() {
   modal.style.display = "inline-block";
-};
+});
 
-clos.onclick = function closemodal() {
+clos.addEventListener("click",function closemodal() {
   modal.style.display = "none";
   document.querySelector("form").reset();
   imgemploiyee.src = " "
-
-
-
-};
+});
 
 // add exepriances
 addExpBtn.addEventListener("click",function(){
@@ -359,10 +356,26 @@ function affichzone(ctx, zon) {
 
 afficheremployé(); 
 
+btnconf.addEventListener("click", function() {
+  affichzone(this, conference);
+});
 
-btnconf.onclick = function(){ affichzone(this,conference);}
-btnser.onclick = function() {affichzone(this,server);}
-btnsecur.onclick = function(){affichzone(this,security);}
-btnrecep.onclick = function(){affichzone(this,reception);}
-btnstaf.onclick = function() {affichzone(this,staff);}
-btnarchiv.onclick = function(){affichzone(this,archives);}
+btnser.addEventListener("click", function() {
+  affichzone(this, server);
+});
+
+btnsecur.addEventListener("click", function() {
+  affichzone(this, security);
+});
+
+btnrecep.addEventListener("click", function() {
+  affichzone(this, reception);
+});
+
+btnstaf.addEventListener("click", function() {
+  affichzone(this, staff);
+});
+
+btnarchiv.addEventListener("click", function() {
+  affichzone(this, archives);
+});
