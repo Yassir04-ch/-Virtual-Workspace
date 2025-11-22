@@ -224,6 +224,7 @@ btnclosmodale.addEventListener("click",function(){
   employezone.style.display = "none";
 
 })
+
 function affichzone(ctx, zon) {
   if (zon.length <= 0) {
     alert("aucune employée");
@@ -314,23 +315,37 @@ function affichzone(ctx, zon) {
           if (!employees.some(e => e.name === employee.name)){ 
              employees.push(employee);
             }
-          if (!conference.some(e => e.name === employee.name && e.role !== "security" && e.role !== "Réceptionniste")){
-             conference.push(employee);
+          if (!conference.some(e => e.name === employee.name)){
+            if( employee.role !== "security" && employee.role !== "Réceptionniste"){
+              conference.push(employee);
+
+            }
+             
           }
-          if (!reception.some(e => e.name === employee.name && e.role !== "security")) {
-            reception.push(employee);
+          if (!reception.some(e => e.name === employee.name )) {
+            if( employee.role !== "security"){
+              reception.push(employee);
+            }
           }
-          if (!server.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
-            server.push(employee);
+          if (!server.some(e => e.name === employee.name  )) {
+            if (employee.role !== "security" && employee.role !== "Réceptionniste") {
+               server.push(employee);
+            }
           }
-          if (!staff.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
-            staff.push(employee);
+          if (!staff.some(e => e.name === employee.name )) {
+            if (employee.role !== "security" && employee.role !== "Réceptionniste") {
+              staff.push(employee);
+            }
           }
-          if (!archives.some(e => e.name === employee.name   && e.role !== "security" && e.role !== "Réceptionniste" && e.role !== "Nettoyage")){
+          if (!archives.some(e => e.name === employee.name )){
+            if (employee.role !== "security" && employee.role !== "Réceptionniste" && employee.role !== "Nettoyage") {
              archives.push(employee);
+            }
           }
-          if (!security.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
-            security.push(employee);
+          if (!security.some(e => e.name === employee.name)) {
+            if ( employee.role !== "security" && employee.role !== "Réceptionniste") {
+              security.push(employee);
+            }
           }
 
  
