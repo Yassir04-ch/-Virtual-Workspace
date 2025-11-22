@@ -172,8 +172,13 @@ function afficheremployé() {
         </div>
         <button class="edit">edit</button>
       </div>`;
-      
- // afficher profile de emploiyee
+      afichprofil();
+  });
+}
+
+
+// afficher profile de emploiyee
+function afichprofil(){
     const imgb = document.querySelectorAll(".imgpro");
     imgb.forEach(img => {
       img.addEventListener("click", function () {
@@ -200,11 +205,38 @@ function afficheremployé() {
         });
       });
     });
-  });
 }
 
 
 afficheremployé();
+
+
+const select = document.getElementById("selectlist")
+function filteremploiyee(){
+  if(select.value === "Tout les emploiyees"){
+    afficheremployé();
+  }
+  else{
+    let listfilter = employees.filter(fil => fil.role === select.value)
+    nListemp.innerHTML = "";
+
+  listfilter.forEach((emp, index) => {
+    nListemp.innerHTML += `
+      <div class="card">
+        <img data-index="${index}" class="imgcard imgpro" src="${emp.img}" />
+        <div>
+          <p>${emp.name}</p>
+          <p>Role: ${emp.role}</p>
+        </div>
+        <button class="edit">edit</button>
+      </div>`;
+  });
+  }
+    afichprofil();
+
+};
+select.addEventListener("change",filteremploiyee)
+
 
 const btnconf = document.getElementById("btn-confernce")
 const btnser = document.getElementById("btn-server")
@@ -315,37 +347,35 @@ function affichzone(ctx, zon) {
           if (!employees.some(e => e.name === employee.name)){ 
              employees.push(employee);
             }
-          if (!conference.some(e => e.name === employee.name)){
-            if( employee.role !== "security" && employee.role !== "Réceptionniste"){
+          if (!conference.some(e => e.name === employee.name) &&  employee.role !== "security" && employee.role !== "Réceptionniste"){
+            
               conference.push(employee);
+            }  
 
-            }
-             
-          }
-          if (!reception.some(e => e.name === employee.name )) {
-            if( employee.role !== "security"){
+          if (!reception.some(e => e.name === employee.name ) && employee.role !== "security") {
+            
               reception.push(employee);
-            }
+          
           }
-          if (!server.some(e => e.name === employee.name  )) {
-            if (employee.role !== "security" && employee.role !== "Réceptionniste") {
-               server.push(employee);
-            }
+          if (!server.some(e => e.name === employee.name  ) && employee.role !== "security" && employee.role !== "Réceptionniste" ) {
+                server.push(employee);
+            
           }
-          if (!staff.some(e => e.name === employee.name )) {
-            if (employee.role !== "security" && employee.role !== "Réceptionniste") {
+
+          if (!staff.some(e => e.name === employee.name ) && employee.role !== "security" && employee.role !== "Réceptionniste") {
+           
               staff.push(employee);
-            }
+  
           }
-          if (!archives.some(e => e.name === employee.name )){
-            if (employee.role !== "security" && employee.role !== "Réceptionniste" && employee.role !== "Nettoyage") {
+          if (!archives.some(e => e.name === employee.name ) && employee.role !== "security" && employee.role !== "Réceptionniste" && employee.role !== "Nettoyage"){
+           
              archives.push(employee);
-            }
+            
           }
-          if (!security.some(e => e.name === employee.name)) {
-            if ( employee.role !== "security" && employee.role !== "Réceptionniste") {
+          if (!security.some(e => e.name === employee.name) && employee.role !== "security" && employee.role !== "Réceptionniste" ) {
+           
               security.push(employee);
-            }
+            
           }
 
  
@@ -394,3 +424,6 @@ btnstaf.addEventListener("click", function() {
 btnarchiv.addEventListener("click", function() {
   affichzone(this, archives);
 });
+
+let zo = employees.filter( e => e.role === "Manager")
+console.log(zo);
