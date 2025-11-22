@@ -7,7 +7,7 @@
 body {
   font-family: "Cairo", sans-serif;
   background: linear-gradient(to right, black, #4c84ff);
-}
+} 
 
 .container {
   display: flex;
@@ -106,6 +106,9 @@ div.zones {
   grid-area: zone2;
  }
 .zone3 {
+  position: relative;
+  left: -20px;
+  width: 110%;
   background: rgba(255, 0, 0, 0.313);
   grid-area: zone3;
 }
@@ -123,9 +126,32 @@ div.zones {
 
 }
 .zone6 {
+  position: relative;
+  left: -20px;
+  width: 110%;
   grid-area: zone6;
   background: rgba(255, 0, 0, 0.313);
 
+}
+
+ .zone1:hover{
+  background: rgba(255, 0, 0, 0.183);
+}
+ .zone2:hover{
+  background: rgba(255, 0, 0, 0.183);
+}
+
+ .zone3:hover{
+  background: rgba(255, 0, 0, 0.183);
+}
+ .zone4:hover{
+  background: rgba(255, 0, 0, 0.183);
+}
+ .zone5:hover{
+  background: rgba(255, 0, 0, 0.183);
+}
+ .zone6:hover{
+  background: rgba(255, 0, 0, 0.183);
 }
 
 #modal {
@@ -172,14 +198,6 @@ button.small-btn{
   border-radius: 8px;
   color: white;
 }
-/* 
-#modal :hover{
-  box-shadow: 0 10px 30px;
-} */
-
-div.formexp{
-  display: none;
-}
 
 .profile {
   background-color: rgba(14, 13, 13, 0.386);
@@ -212,7 +230,7 @@ div.card-profil:hover{
 
 }
 
-.employézone{
+.employezone{
   background-color: rgba(14, 13, 13, 0.386);
   color: white;
   position: fixed;
@@ -225,7 +243,7 @@ div.card-profil:hover{
   display: none;
 }
 
-.card-employézone{
+.card-employezone{
   display: flex;
   background-color: rgba(52, 50, 50, 0.598);
   width:fit-content;
@@ -238,6 +256,20 @@ button.btn-addzone{
   border-radius: 8px;
   background-color: rgb(26, 216, 26);
 }
+
+#closmodale-emploi{
+  background-color: red;
+  color: white;
+  width: 50px;
+  border: none;
+  border-radius: 6px;
+  position: absolute;
+  left: 48%;
+ }
+ #closmodale-emploi:hover{
+  background-color: rgb(158, 6, 6);
+
+ }
 
 .modalinfo input {
   width: 95%;
@@ -326,6 +358,7 @@ button:hover{
   background-color: rgb(164, 13, 13);
 }
 @media (min-width: 1280px) {
+
   .container {
     flex-direction: row;
   }
@@ -335,6 +368,7 @@ button:hover{
   section.plan {
     width: 80%;
   }
+ 
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
@@ -347,6 +381,7 @@ button:hover{
   section.plan {
     width: 80%;
   }
+ 
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -362,6 +397,11 @@ button:hover{
   }
   section.plan {
     width: 100%;
+  }
+    #nListemp{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 20px;
   }
 }
 
@@ -409,16 +449,14 @@ button:hover{
   .card {
   font-size: 12px;
   display: flex;
-  width: 60%;
+  width: 95%;
   padding: 5px;
   justify-content: space-between;
   background: rgba(128, 128, 128, 0.436);
   border-radius: 10px;
   margin: 8px 0px;
 }
-.btnajout{
-  width: 45%;
-}
+
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {

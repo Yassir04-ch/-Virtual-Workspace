@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Staff Manager</title>
@@ -8,19 +8,19 @@
 <body>
 
 <header>
-     
+
 </header>
 
 <div class="container">
 
      <aside class="content">
-        <h3>Employés</h3>
+        <h3>Employés non assignés</h3>
 
         <div id="nListemp">
 
         </div>
 
-        <button id="addBtn" class="btnajout">Ajouter un employé</button>
+        <button id="addBtn" class="btnajout">Ajouter un employe</button>
     </aside>
 
     <section class="plan">
@@ -69,10 +69,10 @@
 <div id="modal">
     <div class="modalinfo">
 
-        <h3>Ajouter un employé</h3>
+        <h3>Ajouter un employe</h3>
        
       <form>
-         <img id="imgemploiyee" src="" alt="image du emploiyee">
+         <img id="imgemploiyee" src="#" alt="image du emploiyee">
         <input id="nameInput" placeholder="Nom de l'employé" required>
         <label for="roleselect">Role</label>
          <select class="select"  id="roleselect">
@@ -90,13 +90,9 @@
             <input id="datdebu" type="date">
             <label for="datfin">date-fin</label>
             <input id="datfin" type="date">
-        <button type="button" id="addExpBtn" class="small-btn" required>Add Experience</button>
+        <button type="button" id="addExpBtn" class="small-btn">Add Experience</button>
         <div class="formexp" id="formex">
-            <input type="text" placeholder="exepriance">
-            <label for="datdebu">date-debut</label>
-            <input id="datdebu" type="date">
-            <label for="datfin">date-fin</label>
-            <input id="datfin" type="date">
+            
         </div>
         <div id="exepriances">
         </div>
@@ -110,7 +106,12 @@
 <div id="profile" class="profile">
    
 </div>
-<div id="employézone" class="employézone">
+<!-- modal emploiyee zone  -->
+
+<div  id="employezone"  class="employezone">
+  <div id="employezoneee">
+  </div>
+  <button id="closmodale-emploi">close</button>  
 </div>
 <script src="script.js"></script>
 </body>

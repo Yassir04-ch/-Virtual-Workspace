@@ -25,7 +25,6 @@ addBtn.onclick = function affmodal() {
 
 clos.onclick = function closemodal() {
   modal.style.display = "none";
-  formex.style.display = "none"
   document.querySelector("form").reset();
   imgemploiyee.src = " "
 
@@ -33,8 +32,14 @@ clos.onclick = function closemodal() {
 
 };
 
+// add exepriances
 addExpBtn.addEventListener("click",function(){
-  formex.style.display = "block"
+  formex.innerHTML +=`
+            <input type="text" placeholder="exepriance">
+            <label for="datdebu">date-debut</label>
+            <input id="datdebu" type="date">
+            <label for="datfin">date-fin</label>
+            <input id="datfin" type="date">` ;
 
 })
 
@@ -105,7 +110,7 @@ function ajuteremployé() {
     img: imgInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
-    experience: []
+    experience: expInput.value
   };
 
    
@@ -214,24 +219,28 @@ const btnrecep = document.getElementById("btn-reception")
 
 
 // afficher les emploi en zones
-const employezone = document.getElementById("employézone");
+const employezone = document.getElementById("employezone");
+const employezoneee = document.getElementById("employezoneee");
+const btnclosmodale = document.getElementById("closmodale-emploi")
 
+btnclosmodale.addEventListener("click",function(){
+  employezone.style.display = "none";
+
+})
 function affichzone(ctx, zon) {
   if (zon.length <= 0) {
     alert("aucune employée");
     return;
-  } else if (zon.length >= 3) {
-    alert("maximum employée");
-    return;
   } 
 
+
   employezone.style.display = "block";
-  employezone.innerHTML = "";
+  employezoneee.innerHTML = "";
 
  
   zon.forEach((p, index) => {
-    employezone.innerHTML += `
-      <div class="card-employézone">
+    employezoneee.innerHTML += `
+      <div class="card-employezone">
         <img class="imgcard" src="${p.img}">
         <div>
           <p>${p.name}</p>
@@ -255,9 +264,9 @@ function affichzone(ctx, zon) {
       const zondiv = ctx.closest(`[data-zone]`);
       const equipeContainer = zondiv.querySelector(".equipe");
 
-      // إضافة البطاقة للzone
+
       equipeContainer.innerHTML += `
-        <div class="card-employézone" style="width:fit-content;">
+        <div class="card-employezone" style="width:fit-content;">
           <img class="imgcard" src="${employee.img}">
           <div>
             <p>${employee.name}</p>
@@ -306,22 +315,22 @@ function affichzone(ctx, zon) {
           if (!employees.some(e => e.name === employee.name)){ 
              employees.push(employee);
             }
-          if (!conference.some(e => e.name === employee.name)){
+          if (!conference.some(e => e.name === employee.name && e.role !== "security" && e.role !== "Réceptionniste")){
              conference.push(employee);
           }
-          if (!reception.some(e => e.name === employee.name)) {
+          if (!reception.some(e => e.name === employee.name && e.role !== "security")) {
             reception.push(employee);
           }
-          if (!server.some(e => e.name === employee.name)) {
+          if (!server.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
             server.push(employee);
           }
-          if (!staff.some(e => e.name === employee.name)) {
+          if (!staff.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
             staff.push(employee);
           }
-          if (!archives.some(e => e.name === employee.name)){
+          if (!archives.some(e => e.name === employee.name   && e.role !== "security" && e.role !== "Réceptionniste" && e.role !== "Nettoyage")){
              archives.push(employee);
           }
-          if (!security.some(e => e.name === employee.name)) {
+          if (!security.some(e => e.name === employee.name  && e.role !== "security" && e.role !== "Réceptionniste")) {
             security.push(employee);
           }
 
