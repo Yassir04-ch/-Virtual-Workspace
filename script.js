@@ -279,15 +279,6 @@ function affichzone(ctx, zon) {
         <button data-index="${index}" class="btn-addzone">add</button>
       </div>`;
   });
-
- 
-  const removeinArray = (arr, empl) => {
-    const i = arr.findIndex(e => e.name === empl.name && e.img === empl.img);
-    if (i > -1){
-       arr.splice(i, 1);
-      }
-  };
-
  
   document.querySelectorAll(".btn-addzone").forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -343,42 +334,39 @@ function affichzone(ctx, zon) {
         rmBtn.addEventListener("click", function () {
           this.parentElement.remove();
 
- 
-          if (!employees.some(e => e.name === employee.name)){ 
-             employees.push(employee);
-            }
-          if (!conference.some(e => e.name === employee.name) &&  employee.role !== "security" && employee.role !== "Réceptionniste"){
-            
-              conference.push(employee);
-            }  
+ // virification du les zone 
+if (!employees.some(e => e.name === employee.name && e.img === employee.img)) { 
+  employees.push(employee);
+}
 
-          if (!reception.some(e => e.name === employee.name ) && employee.role !== "security") {
-            
-              reception.push(employee);
-          
-          }
-          if (!server.some(e => e.name === employee.name  ) && employee.role !== "security" && employee.role !== "Réceptionniste" ) {
-                server.push(employee);
-            
-          }
-
-          if (!staff.some(e => e.name === employee.name ) && employee.role !== "security" && employee.role !== "Réceptionniste") {
-           
-              staff.push(employee);
-  
-          }
-          if (!archives.some(e => e.name === employee.name ) && employee.role !== "security" && employee.role !== "Réceptionniste" && employee.role !== "Nettoyage"){
-           
-             archives.push(employee);
-            
-          }
-          if (!security.some(e => e.name === employee.name) && employee.role !== "security" && employee.role !== "Réceptionniste" ) {
-           
-              security.push(employee);
-            
-          }
-
- 
+// verifier Security
+ if (employee.role === "security") {
+  if (!security.some(e => e.name === employee.name && e.img === employee.img)) {
+    security.push(employee);
+  }
+}
+// verifier reception
+else if (employee.role === "Réceptionniste") {
+  if (!reception.some(e => e.name === employee.name && e.img === employee.img)) {
+    reception.push(employee);
+  }
+}
+// virifier nettoyege
+else if (employee.role === "Nettoyage") {
+  if (!conference.some(e => e.name === employee.name && e.img === employee.img)) conference.push(employee);
+  if (!reception.some(e => e.name === employee.name && e.img === employee.img)) reception.push(employee);
+  if (!server.some(e => e.name === employee.name && e.img === employee.img)) server.push(employee);
+  if (!staff.some(e => e.name === employee.name && e.img === employee.img)) staff.push(employee);
+  if (!security.some(e => e.name === employee.name && e.img === employee.img)) security.push(employee);
+}
+else {
+  if (!conference.some(e => e.name === employee.name && e.img === employee.img)) conference.push(employee);
+  if (!reception.some(e => e.name === employee.name && e.img === employee.img)) reception.push(employee);
+  if (!server.some(e => e.name === employee.name && e.img === employee.img)) server.push(employee);
+  if (!staff.some(e => e.name === employee.name && e.img === employee.img)) staff.push(employee);
+  if (!archives.some(e => e.name === employee.name && e.img === employee.img)) archives.push(employee);
+  if (!security.some(e => e.name === employee.name && e.img === employee.img)) security.push(employee);
+}
           localStorage.setItem("employees", JSON.stringify(employees));
           localStorage.setItem("conference", JSON.stringify(conference));
           localStorage.setItem("reception", JSON.stringify(reception));
@@ -397,6 +385,11 @@ function affichzone(ctx, zon) {
       });
     });
   });
+}
+// function pour remove in arry 
+function removeinArray(arr, empl) {
+  const i = arr.findIndex(e => e.name === empl.name && e.img === empl.img);
+  if (i > -1) arr.splice(i, 1);
 }
 
 afficheremployé(); 
@@ -424,3 +417,4 @@ btnstaf.addEventListener("click", function() {
 btnarchiv.addEventListener("click", function() {
   affichzone(this, archives);
 });
+localStorage.clear();
