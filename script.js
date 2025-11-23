@@ -417,4 +417,3 @@ btnstaf.addEventListener("click", function() {
 btnarchiv.addEventListener("click", function() {
   affichzone(this, archives);
 });
-localStorage.clear();
