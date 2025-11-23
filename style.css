@@ -26,6 +26,7 @@ ul li {
   list-style: none;
 }
 
+/* modal de form de emploiyee */
 .btnenrg {
   background-color: #4caf50;
   color: white;
@@ -47,20 +48,6 @@ select.selectfil{
   height: 23px;
 }
 
-.btnajout {
-  background: #4caf50;
-  color: white;
-  padding: 10px;
-  border: none;
-  margin-top: 10px;
-  border-radius: 8px;
-  width: 100%;
-}
-.btnajout:hover{
-  background: #1c711e;
-
-}
-
 .btnclose {
   background: #ff4444;
   color: white;
@@ -75,6 +62,24 @@ select.selectfil{
   background: #b92121;
   
 }
+/* ajoutee employee dans aside  */
+
+.btnajout {
+  background: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+.btnajout:hover{
+  background: #1c711e;
+
+}
+
+/* plan des zone  */
+
 section.plan {
   width: 80%;
   height: 100vh;
@@ -161,6 +166,7 @@ div.zones {
   background: rgba(255, 0, 0, 0.183);
 }
 
+/* modal de ajouter emploiyee dans les zone  */
 #modal {
   display: none;
 }
@@ -183,6 +189,8 @@ div.zones {
   width: 30%;
   height: 120px;
 }
+
+/* modal de profile */
 .modalinfo {
   background: rgb(255, 255, 255);
   padding: 20px;
@@ -237,6 +245,8 @@ div.card-profil:hover{
 
 }
 
+
+/* les zone dans plan  */
 .employezone{
   background-color: rgba(14, 13, 13, 0.386);
   color: white;
@@ -364,6 +374,8 @@ button:hover{
 .btn-remzone:hover{
   background-color: rgb(164, 13, 13);
 }
+
+/* responsive  */
 @media (min-width: 1280px) {
 
   .container {

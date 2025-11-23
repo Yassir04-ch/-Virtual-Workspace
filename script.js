@@ -424,6 +424,3 @@ btnstaf.addEventListener("click", function() {
 btnarchiv.addEventListener("click", function() {
   affichzone(this, archives);
 });
-
-let zo = employees.filter( e => e.role === "Manager")
-console.log(zo);
