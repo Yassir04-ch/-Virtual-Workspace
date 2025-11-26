@@ -32,7 +32,7 @@ clos.addEventListener("click",function closemodal() {
 // add exepriances
 addExpBtn.addEventListener("click",function(){
   formex.innerHTML +=`
-            <input type="text" placeholder="exepriance">
+            <input class="exeperionce" type="text" placeholder="exepriance">
             <label for="datdebu">date-debut</label>
             <input id="datdebu" type="date">
             <label for="datfin">date-fin</label>
@@ -95,6 +95,14 @@ const exepriances = document.getElementById("exepriances");
 exepriances.addEventListener("click",function(e){
   
 })
+const toutexeperioce = document.querySelectorAll(".toutexeperioce")
+toutexeperioce.forEach(e=>{
+  let exep = e.querySelector(".exeperionce")
+let exeprianc = {
+  entreprise:exep
+}
+employees.exepriances.push(exeprianc)
+})
 
 function ajuteremployé() {
   if (!validateForm()) {
@@ -107,7 +115,7 @@ function ajuteremployé() {
     img: imgInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
-    experience: expInput.value
+    experience:[]
   };
 
    
@@ -392,7 +400,9 @@ function removeinArray(arr, empl) {
   if (i > -1) arr.splice(i, 1);
 }
 
+
 afficheremployé(); 
+
 
 btnconf.addEventListener("click", function() {
   affichzone(this, conference);
@@ -417,3 +427,28 @@ btnstaf.addEventListener("click", function() {
 btnarchiv.addEventListener("click", function() {
   affichzone(this, archives);
 });
+
+
+function recherrole(role){  
+ const equipe = document.querySelectorAll(".equipe")
+ equipe.forEach(e=>{
+role = equipe.children.role
+  e.filter(emp=>emp.role === role)
+}) ;
+};
+console.log(recherrole());
+
+
+
+
+
+
+
+function filteremp(nameentre){
+
+  let filemploi = employees.filter(e=>e.exepriances.map(ex=>ex.nameentre === nameentre ))
+  console.log(filemploi);
+  
+}
+
+ filteremp(nameentre)
